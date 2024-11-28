@@ -1,0 +1,19 @@
+body{
+    background-color: black;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+
+}
+.content{
+    flex: 1;
+    background-color: gold;
+
+
+}
+footer{
+    color: gold;
+    position: fixed;
+    bottom: 0;
+
+}

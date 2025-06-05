@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Досягнення | Шавурський Олег</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* === Глобальні змінні === */
+    :root {
+      --primary: #00ffff;
+      --secondary: #ff00ff;
+      --dark: #0f0f1a;
+      --light: #f0f0ff;
+      --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --card-bg: rgba(15, 15, 26, 0.7);
+    }
+
+    /* === Базові стилі === */
+    body {
+      font-family: 'Rajdhani', 'Arial Narrow', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--light);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      transition: all 0.3s ease;
+    }
+
+    body.light {
+      --dark: #f0f0ff;
+      --light: #0f0f1a;
+      --bg-gradient: linear-gradient(135deg, #e0e0ff, #a5a5ff, #c9c9ff);
+      --card-bg: rgba(240, 240, 255, 0.7);
+    }
+
+    /* === Контроли (тема/мова) === */
+    #top-controls {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 10px;
+    }
+
+    #theme-toggle, #lang-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      backdrop-filter: blur(5px);
+    }
+
+    #theme-toggle:hover, #lang-toggle:hover {
+      background: var(--primary);
+      color: var(--dark);
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    /* === Хедер === */
+    header {
+      text-align: center;
+      padding: 2rem;
+      padding-top: 4rem;
+      background: rgba(15, 15, 26, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--secondary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent),
+        linear-gradient(transparent, rgba(255, 0, 255, 0.1), transparent);
+      pointer-events: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 0 0 10px var(--primary), 0 0 20px var(--secondary);
+      animation: neonGlow 2s infinite alternate;
+      position: relative;
+    }
+
+    @keyframes neonGlow {
+      from { text-shadow: 0 0 5px var(--primary), 0 0 10px var(--secondary); }
+      to { text-shadow: 0 0 15px var(--primary), 0 0 25px var(--secondary), 0 0 35px var(--secondary); }
+    }
+
+    /* === Навігація === */
+    nav {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--light);
+      text-decoration: none;
+      margin: 0 15px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: var(--primary);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    .nav-link.active {
+      background: rgba(0, 255, 255, 0.2);
+      color: var(--primary);
+      box-shadow: 0 0 15px var(--primary);
+    }
+
+    /* === Основний контент === */
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(15, 15, 26, 0.5);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+      position: relative;
+    }
+
+    main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.05), transparent),
+        linear-gradient(transparent, rgba(255, 0, 255, 0.05), transparent);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    h2 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 5px var(--primary);
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      margin: 10px auto;
+      border-radius: 3px;
+    }
+
+    /* === Картки досягнень === */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .achievement-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 1.5rem;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
+    }
+
+    .achievement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+      z-index: -1;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+      border-color: var(--primary);
+    }
+
+    .achievement-card h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .achievement-card h3 i {
+      text-shadow: 0 0 10px currentColor;
+    }
+
+    .achievement-card p {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* === Галерея фото === */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+      border-color: var(--primary);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* === Випадковий факт === */
+    .random-fact {
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      margin-top: 3rem;
+      border-radius: 0 10px 10px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .random-fact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .random-fact p {
+      margin: 0;
+      font-style: italic;
+      position: relative;
+    }
+
+    /* === Адаптивність === */
+    @media (max-width: 768px) {
+      header {
+        padding-top: 6rem;
+      }
+      
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .nav-link {
+        margin: 5px 0;
+        width: 80%;
+        text-align: center;
+      }
+
+      .achievements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="top-controls">
+    <button id="lang-toggle">Česky</button>
+    <button id="theme-toggle">🌙</button>
+  </div>
+
+  <header>
+    <h1 id="site-title">Шавурський Олег</h1>
+    <nav>
+      <a href="index.html" class="nav-link" id="nav-home">Головна</a>
+      <a href="bio.html" class="nav-link" id="nav-bio">Біографія</a>
+      <a href="achievements.html" class="nav-link active" id="nav-achievements">Досягнення</a>
+      <a href="contacts.html" class="nav-link" id="nav-contacts">Контакти</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="achievements-title">Мої досягнення</h2>
+
+    <div class="photo-gallery">
+      <div class="gallery-item">
+        <img src="https://skolabaltaci.edupage.org/elearning/ruqjzfpvimg?z%3Agv0GLyMd%2BLHf8jeYhh5NRiyUI7AeAFz59OYs%2Bkpa51iO9XaF8dp4dBUDaREfTTAsE7FaWGnpOO32eyif3iZrBw%3D%3D" alt="Фото досягнення 1" id="achievement-img1">
+      </div>
+      <div class="gallery-item">
+        <img src="https://skolabaltaci.edupage.org/elearning/ruqjzfpvimg?z%3AuiZE0TViMQ3DXEQS1utxbSARw%2B7jJCZ2XizgGz%2BFu2r7JxqpK7vCRhk4oEV6LvwKEDpeOih8UIeLoamG2VSAaQ%3D%3D" alt="Фото досягнення 2" id="achievement-img2">
+      </div>
+      <div class="gallery-item">
+        <img src="https://skolabaltaci.edupage.org/elearning/ruqjzfpvimg?z%3An5Dd2vf%2BfEopVaLeJ9%2FEtJp0ZJa4Bhg%2Fct9g7DgDR3FlVmZJ%2BPkqW%2BvJULQBEJ%2BU" alt="Фото досягнення 3" id="achievement-img3">
+      </div>
+    </div>
+
+    <div class="achievements-grid">
+      <div class="achievement-card" id="achievement1">
+        <h3><i class="fas fa-trophy"></i> <span id="achievement1-title">народився в Україні</span></h3>
+        <p id="achievement1-text">Я син козака </p>
+      </div>
+
+      <div class="achievement-card" id="achievement2">
+        <h3><i class="fas fa-rocket"></i> <span id="achievement2-title">я виїхав з украіни</span></h3>
+        <p id="achievement2-text">я ухилянт </p>
+      </div>
+
+
+
+
+
+  <script>
+    // Мовні тексти
+    const translations = {
+      uk: {
+        "site-title": "Шавурський Олег",
+        "nav-home": "Головна",
+        "nav-bio": "Біографія",
+        "nav-achievements": "Досягнення",
+        "nav-contacts": "Контакти",
+        "achievements-title": "Мої досягнення",
+        "achievement1-title": "Переможець хакатону \"КіберБандера 2023\"",
+        "achievement1-text": "Розробив алгоритм, який зламує будь-який урядковий сайт за 3.14 секунди (але використовував тільки для добрих справ).",
+        "achievement2-title": "Запустив власний NFT-проект \"Чорнобайври\"",
+        "achievement2-text": ">я виїхав з украіни \"я ухилянт",
+        "achievement3-title": "Навчив нейромережу писати вірші про сало",
+        "achievement3-text": "GPT-4 плаче від заздрості, коли бачить мої рядки: \"Сало в шоколаді — це як козак у Балаклаві\".",
+        "achievement4-title": "Написав код без багів з першого разу",
+        "achievement4-text": "Це сталося лише один раз у 3:47 ночі, і ніхто, крім мого кота, не повірить.",
+        "achievement5-title": "Лектор IT-конференцій",
+        "achievement5-text": "Виступав з доповідями про кібербезпеку та штучний інтелект на 5 міжнародних конференціях.",
+        "achievement6-title": "Чемпіон з алгоритмів",
+        "achievement6-text": "Розв'язав задачу, над якою більшість програмістів ламали голову понад 10 років.",
+        "random-fact": "Факт: Якщо ви читаєте цей текст, ви вже на 37% крутіші за середньостатистичного відвідувача сайтів про сало.",
+        "lang-toggle": "Česky"
+      },
+      cs: {
+        "site-title": "Shchavurský Oleh",
+        "nav-home": "Domů",
+        "nav-bio": "Biografie",
+        "nav-achievements": "Úspěchy",
+        "nav-contacts": "Kontakty",
+        "achievements-title": "Moje úspěchy",
+        "achievement1-title": "Vítěz hackathonu \"KyberBandera 2023\"",
+        "achievement1-text": "Vyvinul algoritmus, který dokáže prolomit jakýkoli vládní web za 3.14 sekundy (ale používal jsem ho pouze pro dobré účely).",
+        "achievement2-title": "Spustil vlastní NFT projekt \"Černobajvry\"",
+        "achievement2-text": "ja vyjel z ukrajiny. \"ja uchiljant",
+       
+      }
+    };
+
+    // Поточна мова (за замовчуванням українська)
+    let currentLang = localStorage.getItem('lang') || 'uk';
+
+    // Функція для зміни мови
+    function updateLanguage() {
+      // Оновлюємо всі тексти на сторінці
+      const elements = document.querySelectorAll('[id]');
+      elements.forEach(element => {
+        const id = element.id;
+        if (translations[currentLang][id]) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.value = translations[currentLang][id];
+          } else {
+            element.textContent = translations[currentLang][id];
+          }
+        }
+      });
+
+      // Оновлюємо текст кнопки перемикача мови
+      document.getElementById('lang-toggle').textContent = translations[currentLang]['lang-toggle'];
+
+      // Зберігаємо вибір мови
+      localStorage.setItem('lang', currentLang);
+    }
+
+    // Обробник кнопки перемикача мови
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      currentLang = currentLang === 'uk' ? 'cs' : 'uk';
+      updateLanguage();
+    });
+
+    // Перемикач теми
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggle.textContent = document.body.classList.contains('light') ? '🌑' : '🌙';
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Відновлення теми з localStorage
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      themeToggle.textContent = '🌑';
+    }
+
+    // Анімація карток при скролі
+    const achievementCards = document.querySelectorAll('.achievement-card');
+    
+    const animateOnScroll = () => {
+      achievementCards.forEach(card => {
+        const cardPosition = card.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.3;
+        
+        if(cardPosition < screenPosition) {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Спочатку ховаємо картки
+    achievementCards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all 0.5s ease';
+    });
+    
+    // Ініціалізація
+    window.addEventListener('load', () => {
+      updateLanguage();
+      animateOnScroll();
+    });
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
+</body>
+</html>

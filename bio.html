@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Біографія</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles_bio.css">
+</head>
+<body>
+    <div id="top-controls">
+  <button id="lang-toggle">Česky</button>
+  <button id="theme-toggle">🌙</button>
+</div>
+  <header>
+    <h1 id="site-title">Біографія</h1>
+    <nav>
+      <a href="index.html" class="nav-link">Головна</a>
+      <a href="achievements.html" class="nav-link">Досягнення</a>
+      <a href="contacts.html" class="nav-link">Контакти</a>
+    </nav>
+  </header>
+  <main>
+    <section class="section">
+      <h2 id="bio-title">Біографія</h2>
+      <p id="bio-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer vulputate sem a nibh rutrum consequat. Phasellus rhoncus. Fusce suscipit libero eget elit. Etiam posuere lacus quis dolor. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Mauris metus. Nulla pulvinar eleifend sem. Fusce consectetuer risus a nunc. Vestibulum fermentum tortor id mi. Aliquam erat volutpat. In enim a arcu imperdiet malesuada. Quisque tincidunt scelerisque libero. Praesent dapibus. Donec quis nibh at felis congue commodo. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Morbi leo mi, nonummy eget tristique non, rhoncus non leo.</p>
+    </section>
+  </main>
+  <script src="lang.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const langBtn = document.getElementById('lang-toggle');
+
+  const texts = {
+    uk: {
+      'site-title': 'Щавурський Олег',
+      'main-title': 'Привіт!',
+      'main-text': 'Це головна сторінка. Натисни на розділ, щоб перейти.',
+      'bio-title': 'Біографія',
+      'bio-text': 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer vulputate sem a nibh rutrum consequat. Phasellus rhoncus. Fusce suscipit libero eget elit. Etiam posuere lacus quis dolor. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Mauris metus. Nulla pulvinar eleifend sem. Fusce consectetuer risus a nunc. Vestibulum fermentum tortor id mi. Aliquam erat volutpat. In enim a arcu imperdiet malesuada. Quisque tincidunt scelerisque libero. Praesent dapibus. Donec quis nibh at felis congue commodo. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Morbi leo mi, nonummy eget tristique non, rhoncus non leo.',
+      'achievements-title': 'Досягнення',
+      'achievements-text': 'Опиши свої круті досягнення, проекти або перемоги, якими пишаєшся.',
+      'contacts-title': 'Контакти',
+      'contacts-text': 'Тут можна вказати email, соцмережі або інші способи зв’язку.',
+              "nav-home": "Головна",
+        "nav-bio": "Біографія",
+        "nav-achievements": "Досягнення",
+        "nav-contacts": "Контакти",
+        "achievements-title": "Мої досягнення",
+      toggleText: 'Česky'
+    },
+    cs: {
+      'site-title': 'Shchavurskyi Oleh',
+      'main-title': 'Ahoj!',
+      'main-text': 'Toto je hlavní stránka. Klikni na sekci pro pokračování.',
+      'bio-title': 'Biografie',
+      'bio-text': 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer vulputate sem a nibh rutrum consequat. Phasellus rhoncus. Fusce suscipit libero eget elit. Etiam posuere lacus quis dolor. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Mauris metus. Nulla pulvinar eleifend sem. Fusce consectetuer risus a nunc. Vestibulum fermentum tortor id mi. Aliquam erat volutpat. In enim a arcu imperdiet malesuada. Quisque tincidunt scelerisque libero. Praesent dapibus. Donec quis nibh at felis congue commodo. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Morbi leo mi, nonummy eget tristique non, rhoncus non leo.',
+      'achievements-title': 'Úspěchy',
+      'achievements-text': 'Popiš své skvělé úspěchy, projekty nebo vítězství, na která jsi hrdý.',
+      'contacts-title': 'Kontakty',
+      'contacts-text': 'Zde můžeš uvést email, sociální sítě nebo jiné způsoby kontaktu.',
+        "nav-home": "Domů",
+        "nav-bio": "Biografie",
+        "nav-achievements": "Úspěchy",
+        "nav-contacts": "Kontakty",
+        "achievements-title": "Moje úspěchy",
+      toggleText: 'Українська'
+    }
+  };
+
+  // Читаем из localStorage или ставим uk по умолчанию
+  let currentLang = localStorage.getItem('lang') || 'uk';
+
+  function updateTexts() {
+    const lang = texts[currentLang];
+    for (const id in lang) {
+      const el = document.getElementById(id);
+      if (el && lang[id]) el.textContent = lang[id];
+    }
+    if (langBtn) langBtn.textContent = lang.toggleText;
+  }
+
+  if (langBtn) {
+    langBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'uk' ? 'cs' : 'uk';
+      localStorage.setItem('lang', currentLang);
+      updateTexts();
+    });
+  }
+
+  updateTexts();
+});
+</script>
+
+</body>
+</html>

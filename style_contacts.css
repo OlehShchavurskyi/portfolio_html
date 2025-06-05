@@ -1,0 +1,149 @@
+/* Глобальні стилі - трохи психоделіки */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(-45deg, #000000,  #ff5100, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #ff00ff;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+    animation: neonGlow 2s infinite alternate;
+}
+
+@keyframes neonGlow {
+    from { text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff; }
+    to { text-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff, 0 0 30px #ffff00; }
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00ffff;
+}
+
+/* Секція контактів - максимально креативна */
+#kontakty {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+#kontakty h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.contact-item {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: #ff6a00;
+    transform: scale(1.05);
+}
+
+.contact-item a {
+    color: #ffff00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 5px #ffff00;
+}
+
+/* Рандомна інфа (для приколу) */
+.random-info {
+    margin-top: 3rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-left: 5px solid #ff00ff;
+}
+
+.random-info p {
+    font-style: italic;
+    animation: textColorChange 5s infinite;
+}
+
+@keyframes textColorChange {
+    0% { color: #00ffff; }
+    33% { color: #ff00ff; }
+    66% { color: #ffff00; }
+    100% { color: #00ffff; }
+}
+
+/* Футер - ще більше світіння */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #00ffff;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px #00ffff;
+}

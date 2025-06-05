@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Моя Біографія</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="top-controls">
+    <button id="lang-toggle">Česky</button>
+    <button id="theme-toggle">🌙</button>
+  </div>
+
+  <header>
+    <h1 id="site-title">Моя Біографія</h1>
+    <nav>
+      <a href="bio.html" class="nav-link">Біографія</a>
+      <a href="achievements.html" class="nav-link">Досягнення</a>
+      <a href="contacts.html" class="nav-link">Контакти</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section">
+      <img src="https://i1.sndcdn.com/avatars-000186171491-w62yym-t240x240.jpg" alt="Опис фото" class="card-image">
+      <h2 id="main-title">Привіт!</h2>
+      <p id="main-text">Це головна сторінка. Натисни на розділ, щоб перейти.</p>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // ==== ТЕМА ====
+      const themeBtn = document.getElementById('theme-toggle');
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light');
+        themeBtn.textContent = '🌞';
+      }
+
+      themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        const isLight = document.body.classList.contains('light');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        themeBtn.textContent = isLight ? '🌞' : '🌙';
+      });
+
+      // ==== МОВА ====
+      const langBtn = document.getElementById('lang-toggle');
+      const texts = {
+        uk: {
+          'site-title': 'Щавурський Олег',
+          'main-title': 'Привіт!',
+          'main-text': 'Це головна сторінка. Натисни на розділ, щоб перейти.',
+          toggleText: 'Česky'
+        },
+        cs: {
+          'site-title': 'Shchavurskyi Oleh',
+          'main-title': 'Ahoj!',
+          'main-text': 'Toto je hlavní stránka. Klikni na sekci pro pokračování.',
+          toggleText: 'Українська'
+        }
+      };
+
+      let currentLang = localStorage.getItem('lang') || 'uk';
+
+      function updateTexts() {
+        const lang = texts[currentLang];
+        for (const id in lang) {
+          const el = document.getElementById(id);
+          if (el && lang[id]) el.textContent = lang[id];
+        }
+        if (langBtn) langBtn.textContent = lang.toggleText;
+      }
+
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          currentLang = currentLang === 'uk' ? 'cs' : 'uk';
+          localStorage.setItem('lang', currentLang);
+          updateTexts();
+        });
+      }
+
+      updateTexts();
+    });
+  </script>
+</body>
+</html>

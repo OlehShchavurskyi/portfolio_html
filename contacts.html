@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Контакти</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_contacts.css">
+</head>
+<body>
+    <div id="top-controls">
+  <button id="lang-toggle">Česky</button>
+  <button id="theme-toggle">🌙</button>
+</div>
+  <header>
+    <h1 id="site-title">Контакти</h1>
+    <nav>
+      <a href="index.html" class="nav-link">Головна</a>
+      <a href="bio.html" class="nav-link">Біографія</a>
+      <a href="achievements.html" class="nav-link">Досягнення</a>
+    </nav>
+  </header>
+  <main>
+    <section id="kontakty">
+    <h2>Kontakty</h2>
+    <div class="contact-item">
+        <p>Email: <a href="mailto:shchavurskyi@example.com">shchavurskyi@example.com</a></p>
+    </div>
+    <div class="contact-item">
+        <p>Telegram: <a href="https://t.me/shchavurskyi" target="_blank">@shchavurskyi</a></p>
+    </div>
+    <div class="contact-item">
+        <p>Instagram: <a href="https://instagram.com/shchavurskyi" target="_blank">@shchavurskyi</a></p>
+    </div>
+    <div class="random-info">
+        <p>💡Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer vulputate sem a nibh rutrum consequat. Phasellus rhoncus. </p>
+    </div>
+
+  </main>
+  <script src="lang.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const langBtn = document.getElementById('lang-toggle');
+
+  const texts = {
+    uk: {
+      'site-title': 'Щавурський Олег',
+      'main-title': 'Привіт!',
+      'main-text': 'Це головна сторінка. Натисни на розділ, щоб перейти.',
+      'bio-title': 'Біографія',
+      'bio-text': 'Тут буде твоя біографія українською мовою. Розкажи про себе, свої цілі, що тебе надихає.',
+      'achievements-title': 'Досягнення',
+      'achievements-text': 'Опиши свої круті досягнення, проекти або перемоги, якими пишаєшся.',
+      'contacts-title': 'Контакти',
+      'contacts-text': 'Тут можна вказати email, соцмережі або інші способи зв’язку.',
+      toggleText: 'Česky'
+    },
+    cs: {
+      'site-title': 'Shchavurskyi Oleh',
+      'main-title': 'Ahoj!',
+      'main-text': 'Toto je hlavní stránka. Klikni na sekci pro pokračování.',
+      'bio-title': 'Biografie',
+      'bio-text': 'Tady bude tvá biografie v češtině. Povídej o sobě, svých cílech a co tě inspiruje.',
+      'achievements-title': 'Úspěchy',
+      'achievements-text': 'Popiš své skvělé úspěchy, projekty nebo vítězství, na která jsi hrdý.',
+      'contacts-title': 'Kontakty',
+      'contacts-text': 'Zde můžeš uvést email, sociální sítě nebo jiné způsoby kontaktu.',
+      toggleText: 'Українська'
+    }
+  };
+
+  // Читаем из localStorage или ставим uk по умолчанию
+  let currentLang = localStorage.getItem('lang') || 'uk';
+
+  function updateTexts() {
+    const lang = texts[currentLang];
+    for (const id in lang) {
+      const el = document.getElementById(id);
+      if (el && lang[id]) el.textContent = lang[id];
+    }
+    if (langBtn) langBtn.textContent = lang.toggleText;
+  }
+
+  if (langBtn) {
+    langBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'uk' ? 'cs' : 'uk';
+      localStorage.setItem('lang', currentLang);
+      updateTexts();
+    });
+  }
+
+  updateTexts();
+});
+</script>
+
+</body>
+</html>
